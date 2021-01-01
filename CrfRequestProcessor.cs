@@ -16,13 +16,13 @@ namespace CustomResourceHelper
         public event CrfRequestHandler Delete;
         public async Task ProcessAsync(CrfRequestBody<TRequestProperties> crfRequestBody)
         {
-            var RequestTypeEvent = (crfRequestBody.RequestType switch
+            var RequestTypeEvent = crfRequestBody.RequestType switch
             {
                 "CREATE" => Create,
                 "UPDATE" => Update,
                 "DELETE" => Delete,
                 _ => null
-            });
+            };
             if(RequestTypeEvent == null)
                 throw new Exception();
             var crfResponseData = RequestTypeEvent.Invoke(crfRequestBody.ResourceProperties, crfRequestBody.OldResourceProperties);
