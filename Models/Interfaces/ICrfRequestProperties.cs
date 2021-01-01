@@ -1,4 +1,4 @@
-﻿namespace CustomResourceHelper.Models.Interfaces
+﻿namespace CrfHelpers.Models.Interfaces
 {
     public interface ICrfRequestProperties
     {

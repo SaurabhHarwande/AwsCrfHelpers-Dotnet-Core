@@ -1,6 +1,6 @@
-﻿using CustomResourceHelper.Models.Interfaces;
+﻿using CrfHelpers.Models.Interfaces;
 
-namespace CustomResourceHelper.Models
+namespace CrfHelpers.Models
 {
     public class CrfRequestBody<T> where T : ICrfRequestProperties
     {

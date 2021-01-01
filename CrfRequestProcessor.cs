@@ -3,14 +3,16 @@ using System.Net;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using CustomResourceHelper.Models;
-using CustomResourceHelper.Models.Interfaces;
+using CrfHelpers.Models;
+using CrfHelpers.Models.Interfaces;
 
-namespace CustomResourceHelper
+namespace CrfHelpers
 {
-    public class CrfRequestProcessor<TRequestProperties, TResponseData> where TRequestProperties : ICrfRequestProperties
+    public class CrfRequestProcessor<TRequestProperties, TResponseData>
+        where TRequestProperties : ICrfRequestProperties
+        where TResponseData : new()
     {
-        public delegate TResponseData CrfRequestHandler(TRequestProperties input, TRequestProperties oldInput);
+        public delegate Task<TResponseData> CrfRequestHandler(TRequestProperties requestProperties, TRequestProperties oldRequestProperties);
         public event CrfRequestHandler Create;
         public event CrfRequestHandler Update;
         public event CrfRequestHandler Delete;
@@ -25,7 +27,7 @@ namespace CustomResourceHelper
             };
             if(RequestTypeEvent == null)
                 throw new Exception();
-            var crfResponseData = RequestTypeEvent.Invoke(crfRequestBody.ResourceProperties, crfRequestBody.OldResourceProperties);
+            var crfResponseData = await RequestTypeEvent.Invoke(crfRequestBody.ResourceProperties, crfRequestBody.OldResourceProperties);
             
             var crfResponseBody = new CrfResponseBody<TResponseData>
             {
@@ -35,7 +37,7 @@ namespace CustomResourceHelper
                 StackId = crfRequestBody.StackId,
                 RequestId = crfRequestBody.RequestId,
                 LogicalResourceId = crfRequestBody.LogicalResourceId,
-                Data = crfResponseData
+                Data = crfResponseData ?? new TResponseData {}
             };
 
             var crfResponseJson = JsonSerializer.Serialize(crfResponseBody);

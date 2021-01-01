@@ -1,4 +1,4 @@
-﻿namespace CustomResourceHelper.Models
+﻿namespace CrfHelpers.Models
 {
     public class CrfResponseBody<T>
     {
