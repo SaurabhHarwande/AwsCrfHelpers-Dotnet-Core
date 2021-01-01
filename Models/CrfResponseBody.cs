@@ -1,6 +1,6 @@
 ﻿namespace CustomResourceHelper.Models
 {
-    public class CrfResponse<T>
+    public class CrfResponseBody<T>
     {
         public string Status { get; set; }
         public string Reason { get; set; }

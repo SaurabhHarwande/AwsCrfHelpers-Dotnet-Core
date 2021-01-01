@@ -14,7 +14,7 @@ namespace CustomResourceHelper
         public event CrfRequestHandler Create;
         public event CrfRequestHandler Update;
         public event CrfRequestHandler Delete;
-        public async Task ProcessAsync(CrfRequest<TRequestProperties> crfRequestBody)
+        public async Task ProcessAsync(CrfRequestBody<TRequestProperties> crfRequestBody)
         {
             var RequestTypeEvent = (crfRequestBody.RequestType switch
             {
@@ -27,7 +27,7 @@ namespace CustomResourceHelper
                 throw new Exception();
             var crfResponseData = RequestTypeEvent.Invoke(crfRequestBody.ResourceProperties, crfRequestBody.OldResourceProperties);
             
-            var crfResponseBody = new CrfResponse<TResponseData>
+            var crfResponseBody = new CrfResponseBody<TResponseData>
             {
                 Status = "SUCCESS",
                 Reason = string.Empty,

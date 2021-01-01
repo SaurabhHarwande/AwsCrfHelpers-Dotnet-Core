@@ -2,7 +2,7 @@
 
 namespace CustomResourceHelper.Models
 {
-    public class CrfRequest<T> where T : ICrfRequestProperties
+    public class CrfRequestBody<T> where T : ICrfRequestProperties
     {
         public string RequestType { get; set; }
         public string ResponseURL { get; set; }
