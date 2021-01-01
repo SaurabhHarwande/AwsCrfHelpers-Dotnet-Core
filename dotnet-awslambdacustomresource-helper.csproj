@@ -3,6 +3,9 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>dotnet_awslambdacustomresource_helper</RootNamespace>
+    <PackageId>Aws.CrfRequestProcessor</PackageId>
+    <Version>0.0.1</Version>
+    <Authors>Saurabh Harwande</Authors>
   </PropertyGroup>
 
 </Project>
