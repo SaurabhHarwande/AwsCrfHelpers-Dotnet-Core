@@ -20,9 +20,9 @@ namespace CrfHelpers
         {
             var RequestTypeEvent = crfRequestBody.RequestType switch
             {
-                "CREATE" => Create,
-                "UPDATE" => Update,
-                "DELETE" => Delete,
+                "Create" => Create,
+                "Update" => Update,
+                "Delete" => Delete,
                 _ => null
             };
             if(RequestTypeEvent == null)
