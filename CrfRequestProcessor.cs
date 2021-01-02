@@ -18,27 +18,45 @@ namespace CrfHelpers
         public event CrfRequestHandler Delete;
         public async Task ProcessAsync(CrfRequestBody<TRequestProperties> crfRequestBody)
         {
-            var RequestTypeEvent = crfRequestBody.RequestType switch
-            {
-                "Create" => Create,
-                "Update" => Update,
-                "Delete" => Delete,
-                _ => null
-            };
-            if(RequestTypeEvent == null)
-                throw new Exception();
-            var crfResponseData = await RequestTypeEvent.Invoke(crfRequestBody.ResourceProperties, crfRequestBody.OldResourceProperties);
+            CrfResponseBody<TResponseData> crfResponseBody;
             
-            var crfResponseBody = new CrfResponseBody<TResponseData>
+            try
             {
-                Status = "SUCCESS",
-                Reason = string.Empty,
-                PhysicalResourceId = Guid.NewGuid().ToString(),
-                StackId = crfRequestBody.StackId,
-                RequestId = crfRequestBody.RequestId,
-                LogicalResourceId = crfRequestBody.LogicalResourceId,
-                Data = crfResponseData ?? new TResponseData {}
-            };
+                var RequestTypeEvent = crfRequestBody.RequestType switch
+                {
+                    "Create" => Create,
+                    "Update" => Update,
+                    "Delete" => Delete,
+                    _ => null
+                };
+                if(RequestTypeEvent == null)
+                    throw new Exception($"{crfRequestBody.RequestType} event is not defined.");
+                var crfResponseData = await RequestTypeEvent.Invoke(crfRequestBody.ResourceProperties, crfRequestBody.OldResourceProperties);
+                
+                crfResponseBody = new CrfResponseBody<TResponseData>
+                {
+                    Status = "SUCCESS",
+                    Reason = string.Empty,
+                    PhysicalResourceId = Guid.NewGuid().ToString(),
+                    StackId = crfRequestBody.StackId,
+                    RequestId = crfRequestBody.RequestId,
+                    LogicalResourceId = crfRequestBody.LogicalResourceId,
+                    Data = crfResponseData ?? new TResponseData()
+                };
+            }
+            catch(Exception e)
+            {
+                crfResponseBody = new CrfResponseBody<TResponseData>
+                {
+                    Status = "FAILED",
+                    Reason = e.Message,
+                    PhysicalResourceId = Guid.NewGuid().ToString(),
+                    StackId = crfRequestBody.StackId,
+                    RequestId = crfRequestBody.RequestId,
+                    LogicalResourceId = crfRequestBody.LogicalResourceId,
+                    Data = new TResponseData()
+                };
+            }
 
             var crfResponseJson = JsonSerializer.Serialize(crfResponseBody);
             var crfResponseBytes = Encoding.UTF8.GetBytes(crfResponseJson);
