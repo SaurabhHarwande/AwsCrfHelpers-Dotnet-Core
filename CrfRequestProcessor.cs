@@ -3,10 +3,10 @@ using System.Net;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using CrfHelpers.Models;
-using CrfHelpers.Models.Interfaces;
+using AwsCrfHelpers.Models;
+using AwsCrfHelpers.Models.Interfaces;
 
-namespace CrfHelpers
+namespace AwsCrfHelpers
 {
     public class CrfRequestProcessor<TRequestProperties, TResponseData>
         where TRequestProperties : ICrfRequestProperties

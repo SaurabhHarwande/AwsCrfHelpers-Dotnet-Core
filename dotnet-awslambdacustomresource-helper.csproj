@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>dotnet_awslambdacustomresource_helper</RootNamespace>
-    <PackageId>Aws.CrfHelper</PackageId>
+    <PackageId>AwsCrfHelper</PackageId>
     <Version>0.0.1</Version>
     <Authors>Saurabh Harwande</Authors>
   </PropertyGroup>

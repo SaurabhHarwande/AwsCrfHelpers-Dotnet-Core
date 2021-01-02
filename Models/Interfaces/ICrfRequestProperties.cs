@@ -1,4 +1,4 @@
-﻿namespace CrfHelpers.Models.Interfaces
+﻿namespace AwsCrfHelpers.Models.Interfaces
 {
     public interface ICrfRequestProperties
     {

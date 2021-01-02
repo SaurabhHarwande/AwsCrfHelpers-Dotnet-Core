@@ -1,6 +1,6 @@
-﻿using CrfHelpers.Models.Interfaces;
+﻿using AwsCrfHelpers.Models.Interfaces;
 
-namespace CrfHelpers.Models
+namespace AwsCrfHelpers.Models
 {
     public class CrfRequestBody<T> where T : ICrfRequestProperties
     {

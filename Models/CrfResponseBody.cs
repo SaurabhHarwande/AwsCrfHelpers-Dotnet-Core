@@ -1,4 +1,4 @@
-﻿namespace CrfHelpers.Models
+﻿namespace AwsCrfHelpers.Models
 {
     public class CrfResponseBody<T>
     {
