@@ -10,7 +10,7 @@ dotnet add package AwsCrfHelper
 There is no documentation around this right now. I have a sample code that can be used as a reference.
 
 Aws Lambda Function:
-``` C#
+``` c#
 using System;
 using System.Threading.Tasks;
 using Amazon;
@@ -64,7 +64,7 @@ namespace aws_listenser_rule_priority_generator
 }
 ```
 Model Class
-``` C#
+``` c#
 using CrfHelpers.Models.Interfaces;
 
 namespace aws_listenser_rule_priority_generator {
