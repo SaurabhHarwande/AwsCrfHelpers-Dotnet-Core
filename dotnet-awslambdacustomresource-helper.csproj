@@ -4,8 +4,10 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>dotnet_awslambdacustomresource_helper</RootNamespace>
     <PackageId>AwsCrfHelper</PackageId>
-    <Version>0.0.1</Version>
+    <Version>0.0.2</Version>
     <Authors>Saurabh Harwande</Authors>
+    <RepositoryUrl>https://gitlab.com/saurabh-harwande-repos/dotnet-awslambdacustomresource-helper</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
 </Project>
