@@ -11,5 +11,7 @@ build-nuget-package:
 
 publish-nuget-package:
   stage: publish
+  dependencies:
+    - "build-nuget-package"
   script:
     - dotnet nuget push .\bin\Nuget\AwsCrfHelper.0.0.2.nupkg --api-key oy2n7enwfluexmmkgteqckczuf6p6b7etorqijqn5attjy --source https://api.nuget.org/v3/index.json
